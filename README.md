@@ -113,10 +113,13 @@ xtitle("Demodulated (Coherent) signal", "Time (s)", "Amplitude");
 ```
 
 ## TABULATION:
-<img width="1064" height="1280" alt="image" src="https://github.com/user-attachments/assets/6eeaa967-37a5-4568-bde9-3d8c4cf1ad6c" />
+<img width="1146" height="900" alt="image" src="https://github.com/user-attachments/assets/cb9aa143-9ac7-4ea2-a81e-e40edc2272cf" />
 
 
 ## OUTPUT:
 <img width="1656" height="986" alt="image" src="https://github.com/user-attachments/assets/07b68ddb-aa75-4ea1-8073-b18b6065c235" />
 
 ## RESULT:
+Thus the DSB-SC-AM Modulation and Demodulation is generated.
+
+
