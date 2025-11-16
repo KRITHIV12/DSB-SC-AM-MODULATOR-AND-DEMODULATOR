@@ -62,9 +62,61 @@ Note: Keep all the switch faults in off position
 <img width="503" height="479" alt="image" src="https://github.com/user-attachments/assets/9f4fdea5-8f1d-44ae-a75a-8c3737088c0a" />
 
 ## PROGRAM:
+```
+clc;
+clear;
+close();
+
+am = 3.9;        
+ac = 7.8;        
+fm =343;       
+fc = 3430;        
+fs = 34300;       
+
+
+t = 0:1/fs:2/fm;
+N = length(t);
+
+m = am * cos(2 * %pi * fm * t);
+c = ac * cos(2 * %pi * fc * t);
+s = (ac + m) .* cos(2 * %pi * fc * t);
+v = s .* cos(2 * %pi * fc * t); 
+cutoff = 2 * fm;                 
+k = 0:N-1;
+freq = k * (fs / N);
+freq(freq > fs/2) = freq(freq > fs/2) - fs; 
+
+V = fft(v);                      
+mask = abs(freq) <= cutoff;      
+Vf = V .* mask;                  
+vlp = real(ifft(Vf));            
+
+demod = 2 * (vlp - ac/2);
+demod = demod - mean(demod) + mean(m); 
+
+scf(0);
+subplot(4,1,1);
+plot(t, m);
+xtitle("Message m(t)", "Time (s)", "Amplitude");
+
+subplot(4,1,2);
+plot(t, c);
+xtitle("Carrier c(t)", "Time (s)", "Amplitude");
+
+subplot(4,1,3);
+plot(t, s);
+xtitle("AM s(t)", "Time (s)", "Amplitude");
+
+subplot(4,1,4);
+plot(t, demod);
+xtitle("Demodulated (Coherent) signal", "Time (s)", "Amplitude");
+```
 
 ## TABULATION:
+<img width="1064" height="1280" alt="image" src="https://github.com/user-attachments/assets/6eeaa967-37a5-4568-bde9-3d8c4cf1ad6c" />
+
 
 ## OUTPUT:
+<img width="1656" height="986" alt="image" src="https://github.com/user-attachments/assets/07b68ddb-aa75-4ea1-8073-b18b6065c235" />
 
 ## RESULT:
